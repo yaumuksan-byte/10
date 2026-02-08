@@ -1,19 +1,12 @@
 <!DOCTYPE html>
-
-
 <html lang="zh-CN">
-
 <head>
-
-    
-    <meta name="description" content="Terraria Ultra - Aesthetic Edition - A beautiful 2D sandbox game">
-
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
-        name="viewport" />
-    <meta content="yes" name="apple-mobile-web-app-capable" />
-    <meta content="yes" name="mobile-web-app-capable" />
-    <meta content="#1a1a2e" name="theme-color" />
+    <meta name="description" content="Terraria Ultra - Aesthetic Edition - A beautiful 2D sandbox game">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#1a1a2e" />
     <title>✨ Terraria Ultra - Aesthetic Edition ✨</title>
 
     <style type="text/css">  :root { --joy-size: 140px; --joy-pad: 35px; --btn-size: 70px; --ui-accent: rgba(162, 155, 254, 0.9); } #top-buttons { position: fixed; top: 14px; right: 14px; display: flex; gap: 10px; z-index: 9999; pointer-events: auto; } .top-btn { width: 44px; height: 44px; border-radius: var(--hud-radius); border: 1px solid var(--hud-border); background: linear-gradient(135deg, rgba(30, 30, 60, 0.55), rgba(10, 10, 25, 0.75)); backdrop-filter: blur(var(--hud-blur)); -webkit-backdrop-filter: blur(12px); color: #fff; font-size: 20px; display: grid; place-items: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); cursor: pointer; transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease; } .top-btn:active { transform: scale(0.96); } .top-btn:hover { border-color: rgba(162, 155, 254, 0.55); box-shadow: 0 12px 34px rgba(0, 0, 0, 0.42); }  #toast-container { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 9999; pointer-events: none; } .toast { min-width: 180px; max-width: 92vw; padding: 10px 12px; border-radius: 14px; color: rgba(255, 255, 255, 0.92); background: rgba(20, 20, 38, 0.72); border: 1px solid rgba(255, 255, 255, 0.12); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35); opacity: 0; transform: translateY(10px); transition: opacity .18s ease, transform .18s ease; font-size: 14px; } .toast.show { opacity: 1; transform: translateY(0); }  .ux-overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 10000; background: rgba(0, 0, 0, 0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); pointer-events: auto; contain: layout paint; will-change: opacity; } .ux-overlay.show { display: flex; } .ux-panel { width: min(560px, 92vw); max-height: 85vh; overflow: auto; border-radius: 18px; background: linear-gradient(135deg, rgba(20, 20, 40, 0.88), rgba(12, 12, 24, 0.92)); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55); padding: 16px 16px 14px; color: rgba(255, 255, 255, 0.92); } .ux-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; } .ux-title h2 { margin: 0; font-size: 18px; letter-spacing: .5px; } .ux-close { width: 36px; height: 36px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(255, 255, 255, 0.06); color: #fff; cursor: pointer; } .ux-grid { display: grid; gap: 12px; } .ux-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 14px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.09); } .ux-row label { display: flex; flex-direction: column; gap: 4px; font-size: 14px; } .ux-row small { opacity: .75; font-size: 12px; } .ux-row input[type="range"] { width: 170px; } .ux-row select { width: 180px; padding: 8px 10px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(12, 12, 24, 0.85); color: rgba(255, 255, 255, 0.92); } .ux-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 14px; flex-wrap: wrap; } .ux-action { padding: 10px 12px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(255, 255, 255, 0.07); color: rgba(255, 255, 255, 0.92); cursor: pointer; } .ux-action.primary { border-color: rgba(162, 155, 254, 0.5); background: linear-gradient(135deg, rgba(108, 92, 231, 0.55), rgba(162, 155, 254, 0.28)); }  .reduced-motion *, .reduced-motion *::before, .reduced-motion *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; } .reduced-motion #ambient-particles { display: none !important; }  #btn-bag-toggle { position: fixed; display: none; pointer-events: none; } #inventory-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(12, 12, 30, 0.55); backdrop-filter: none; z-index: 520; display: none; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.25s ease; pointer-events: auto; contain: layout paint; will-change: opacity, transform; } #inventory-overlay.open { display: flex; opacity: 1; } #inventory-panel { width: min(920px, 92vw); height: min(620px, 88vh); background: linear-gradient(135deg, rgba(30, 30, 60, 0.88), rgba(18, 18, 38, 0.96)); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 26px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.1); display: flex; overflow: hidden; --inv-scale: 0.96; --inv-drag-y: 0px; transform: translate3d(0, var(--inv-drag-y), 0) scale(var(--inv-scale)); transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); } #inventory-overlay.open #inventory-panel { --inv-scale: 1; } #inventory-panel.dragging { transition: none !important; } .inv-close-btn { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 12px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); color: #fff; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: transform 0.12s ease, background 0.12s ease; z-index: 3; } .inv-close-btn:hover { transform: translateY(-1px); background: rgba(255, 255, 255, 0.10); } .inv-left { position: relative; flex: 1.35; padding: 22px 22px 18px; background: rgba(0, 0, 0, 0.10); border-right: 1px solid rgba(255, 255, 255, 0.06); display: flex; flex-direction: column; gap: 14px; } .inv-right { position: relative; flex: 0.85; padding: 24px; display: flex; flex-direction: column; gap: 12px; background: radial-gradient(circle at top right, rgba(253, 203, 110, 0.10), transparent 60%); } .inv-topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; } .inv-title { display: flex; gap: 10px; align-items: center; font-size: 18px; font-weight: 800; color: #fff; letter-spacing: 0.6px; } .inv-capacity { display: flex; align-items: center; gap: 10px; } .inv-capacity-text { font-size: 12px; color: rgba(255, 255, 255, 0.7); } .inv-capacity-bar { width: 120px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.10); } .inv-capacity-bar .fill { height: 100%; width: 0%; background: linear-gradient(90deg, rgba(108, 92, 231, 0.95), rgba(253, 203, 110, 0.85)); } .inv-section { display: flex; flex-direction: column; gap: 8px; } .inv-section-label { display: flex; justify-content: space-between; align-items: center; font-size: 12px; letter-spacing: 0.8px; color: rgba(255, 255, 255, 0.65); text-transform: uppercase; } .inv-grid { display: grid; grid-template-columns: repeat(9, 1fr); gap: 10px; padding: 4px 0; } .inv-slot { position: relative; height: 56px; border-radius: 14px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease; user-select: none; } .inv-slot:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.08); } .inv-slot.empty { opacity: 0.55; } .inv-slot.active { outline: 2px solid rgba(255, 255, 255, 0.6); box-shadow: 0 0 16px rgba(255, 255, 255, 0.25); transform: scale(1.06); } .inv-slot.drag-source { transform: scale(1.1); outline: 2px solid rgba(255, 255, 255, 0.85); box-shadow: 0 0 22px rgba(255, 255, 255, 0.35); } .inv-slot.drag-target { outline: 2px dashed rgba(255, 255, 255, 0.75); box-shadow: 0 0 18px rgba(255, 255, 255, 0.28); } .inv-slot.selected { border-color: rgba(108, 92, 231, 0.80); box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.18); } .inv-slot.drop-target { border-color: rgba(0, 184, 148, 0.80); box-shadow: 0 0 0 2px rgba(0, 184, 148, 0.18); } .inv-slot .key { position: absolute; top: 6px; left: 8px; font-size: 10px; color: rgba(255, 255, 255, 0.45); } .inv-slot canvas { width: 34px; height: 34px; image-rendering: pixelated; filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45)); } .inv-slot .item-icon { font-size: 26px; filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45)); } .inv-slot .count { position: absolute; right: 8px; bottom: 6px; font-size: 11px; font-weight: 900; color: #fff; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); } .inv-preview-box { width: 88px; height: 88px; border-radius: 22px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05)); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35); display: flex; align-items: center; justify-content: center; margin-bottom: 4px; } .inv-preview-box canvas { width: 56px; height: 56px; image-rendering: pixelated; filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.45)); } .inv-preview-box .item-icon { font-size: 48px; } .inv-item-name { font-size: 20px; font-weight: 900; color: var(--gold); line-height: 1.1; } .inv-item-meta { font-size: 12px; color: rgba(255, 255, 255, 0.65); margin-top: -4px; } .inv-item-desc { font-size: 12px; color: rgba(255, 255, 255, 0.58); line-height: 1.45; margin-top: 4px; min-height: 44px; } .inv-action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; } .inv-btn { padding: 10px 12px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.06); color: #fff; font-weight: 800; cursor: pointer; transition: transform 0.12s ease, background 0.12s ease, filter 0.12s ease; } .inv-btn:hover { background: rgba(255, 255, 255, 0.10); transform: translateY(-1px); } .inv-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; } .inv-btn.primary { background: linear-gradient(135deg, rgba(108, 92, 231, 0.95), rgba(162, 155, 254, 0.75)); border-color: rgba(108, 92, 231, 0.55); } .inv-btn.danger { background: linear-gradient(135deg, rgba(214, 48, 49, 0.90), rgba(232, 67, 147, 0.65)); border-color: rgba(214, 48, 49, 0.55); } .inv-btn.danger:hover { filter: brightness(1.05); } .inv-hints { margin-top: auto; font-size: 11px; color: rgba(255, 255, 255, 0.45); line-height: 1.55; } .inv-hints kbd { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); padding: 1px 6px; border-radius: 7px; font-size: 10px; color: rgba(255, 255, 255, 0.75); } #inv-held { position: fixed; left: 0; top: 0; transform: translate(-50%, -50%); width: 52px; height: 52px; border-radius: 16px; background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(var(--glass-blur)); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 18px 38px rgba(0, 0, 0, 0.45); display: none; align-items: center; justify-content: center; pointer-events: none; z-index: 525; } #inv-held canvas { width: 34px; height: 34px; image-rendering: pixelated; } #inv-held .item-icon { font-size: 28px; } #inv-held .count { position: absolute; right: 8px; bottom: 7px; font-weight: 900; font-size: 11px; color: #fff; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); }  html.is-mobile #inventory-panel { width: min(94vw, 940px); height: min(92vh, 720px); flex-direction: column; } html.is-mobile .inv-left { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.06); } html.is-mobile .inv-grid { gap: 8px; } html.is-mobile .inv-slot { height: 48px; border-radius: 13px; } html.is-mobile .inv-slot canvas { width: 30px; height: 30px; } html.is-mobile .inv-slot .item-icon { font-size: 24px; } html.is-mobile .inv-action-row { grid-template-columns: 1fr; } html.is-mobile .inv-preview-box { width: 72px; height: 72px; border-radius: 20px; } html.is-mobile #btn-bag-toggle { display: flex; top: 130px; left: 15px; width: 42px; height: 42px; border-radius: 12px; background: rgba(30, 30, 60, 0.8); backdrop-filter: blur(var(--glass-blur)); border: 1px solid rgba(255, 255, 255, 0.2); justify-content: center; align-items: center; font-size: 20px; pointer-events: auto; color: #fff; z-index: 90; } </style>
@@ -2057,51 +2050,27 @@
         }
     </style>
 
-    <style>
-        /* ═══════════════════ CSS性能优化 ═══════════════════ */
+    <style id="perf-optimizations">
+        /* ═══════════════════ CSS Performance Optimizations (consolidated) ═══════════════════ */
+
+        /* GPU compositing hints - only on elements that actually animate */
         #game {
             will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
 
-        .stat-bar,
-        .hotbar-slot,
-        .inv-slot {
-            will-change: transform, opacity;
-        }
-
-        #minimap {
-            will-change: contents;
-        }
-
-        .toast {
-            will-change: transform, opacity;
-        }
-
-        /* 减少重绘 */
-        .action-btn,
-        .top-btn {
-            contain: layout style;
-        }
-
-        /* GPU加速 */
         #joystick,
         #joystick-thumb,
         #crosshair {
             transform: translateZ(0);
             backface-visibility: hidden;
         }
-    </style>
 
-
-    <style id="deep-optimization-styles-v3">
-        /* ═══════════════════ 深度CSS优化 v3 ═══════════════════ */
-        #game,
-        .stat-bar,
-        .hotbar-slot,
-        #minimap,
-        .action-btn {
-            transform: translateZ(0);
-            backface-visibility: hidden;
+        /* Containment - reduces layout/paint scope */
+        .action-btn,
+        .top-btn {
+            contain: layout style;
         }
 
         .inv-slot,
@@ -2110,8 +2079,20 @@
             contain: layout style paint;
         }
 
-        @media (prefers-reduced-motion: reduce) {
+        #stats,
+        #hotbar,
+        .action-buttons {
+            contain: layout;
+        }
 
+        /* Scroll-position hint for scrollable grids */
+        .inv-grid,
+        .craft-grid {
+            will-change: scroll-position;
+        }
+
+        /* Reduced motion: respect user accessibility preference */
+        @media (prefers-reduced-motion: reduce) {
             *,
             *::before,
             *::after {
@@ -2120,17 +2101,7 @@
             }
         }
 
-        .inv-grid,
-        .craft-grid {
-            will-change: scroll-position;
-        }
-
-        #stats,
-        #hotbar,
-        .action-buttons {
-            contain: layout;
-        }
-
+        /* Optimize text rendering for game UI */
         body {
             text-rendering: optimizeSpeed;
         }
@@ -2560,9 +2531,8 @@
         #tu-perf-stats { font-family: monospace; }
     </style>
 
-</head>
-<!-- ========================= OPTIMIZED MODULES (Phase 3) ========================= -->
-<script>
+    <!-- ========================= OPTIMIZED MODULES (Phase 3) ========================= -->
+    <script>
 /**
  * EventManager - 统一事件管理，防止内存泄漏
  */
@@ -2591,39 +2561,8 @@ window.TU = window.TU || {};
 window.TU.EventManager = EventManager;
 
 
-// Safe utilities for robust code
-// Only define simple safe helpers if more robust versions haven't been
-// provided by TU_Defensive. These fallbacks are intentionally minimal and
-// should not override the enhanced implementations (e.g. those bound to
-// BoundaryChecks or SafeAccess) defined earlier. If `window.safeGet` or
-// other helpers already exist, we leave them intact.
-if (typeof window.safeGet === 'undefined') {
-    window.safeGet = function(arr, index, defaultValue) {
-        if (!arr || index < 0 || index >= arr.length) return defaultValue;
-        return arr[index];
-    };
-}
-if (typeof window.safeGetProp === 'undefined') {
-    window.safeGetProp = function(obj, prop, defaultValue) {
-        if (!obj || typeof obj !== 'object') return defaultValue;
-        return obj[prop] !== undefined ? obj[prop] : defaultValue;
-    };
-}
-if (typeof window.safeJSONParse === 'undefined') {
-    window.safeJSONParse = function(str, defaultValue) {
-        try { return JSON.parse(str); } catch (e) { return defaultValue; };
-    };
-}
-if (typeof window.clamp === 'undefined') {
-    window.clamp = function(v, min, max) {
-        return Math.max(min, Math.min(max, v));
-    };
-}
-if (typeof window.lerp === 'undefined') {
-    window.lerp = function(a, b, t) {
-        return a + (b - a) * t;
-    };
-}
+// NOTE: Safe utility helpers (safeGet, safeGetProp, safeJSONParse, clamp, lerp)
+// are already defined by TU_Defensive module above. Duplicate definitions removed.
 
 // Ring buffer for input prediction
 class RingBuffer {
@@ -2678,15 +2617,20 @@ class ParticlePool {
         return particle;
     }
     update(dt) {
-        for (let i = this.active.length - 1; i >= 0; i--) {
+        // Use swap-and-pop instead of splice(i,1) to avoid O(n) shift per removal.
+        // This changes traversal order but particles have no ordering dependency.
+        let writeIdx = 0;
+        for (let i = 0; i < this.active.length; i++) {
             const p = this.active[i];
             p.x += p.vx * dt; p.y += p.vy * dt; p.life -= dt;
             if (p.life <= 0) {
                 p.active = false;
-                this.active.splice(i, 1);
                 this.pool.push(p);
+            } else {
+                this.active[writeIdx++] = p;
             }
         }
+        this.active.length = writeIdx;
     }
     render(ctx, camX, camY) {
         for (const p of this.active) {
@@ -2702,16 +2646,18 @@ window.TU.ParticlePool = ParticlePool;
 
 <script>
 /**
- * Performance Monitor - 性能监控
+ * Performance Monitor - lightweight shim (delegates to PerfMonitor when available)
+ * NOTE: Full implementation lives in PerfMonitor (core/tu_namespace). This shim
+ * provides backward compatibility for code referencing window.PERF_MONITOR.
  */
 window.PERF_MONITOR = {
-    frames: [], maxFrames: 60,
-    record(ft) { this.frames.push(ft); if (this.frames.length > this.maxFrames) this.frames.shift(); },
-    getAverageFPS() { return this.frames.length ? Math.round(1000 / (this.frames.reduce((a,b)=>a+b,0)/this.frames.length)) : 60; }
+    record(ft) { if (window.PerfMonitor) window.PerfMonitor.frame(performance.now()); },
+    getAverageFPS() { return window.PerfMonitor ? window.PerfMonitor.getAverageFPS() : 60; }
 };
-</script>
-<!-- ========================= END OPTIMIZED MODULES ========================= -->
+    </script>
+    <!-- ========================= END OPTIMIZED MODULES ========================= -->
 
+</head>
 
 <body>
     <canvas id="game"></canvas>
@@ -3199,10 +3145,9 @@ window.PERF_MONITOR = {
                 
                 if (pool.length > 0) {
                     const obj = pool.pop();
-                    // 清理对象引用以防止内存泄漏
-                    if (obj && typeof obj === 'object') {
-                        Object.keys(obj).forEach(key => { obj[key] = null; });
-                    }
+                    // Return pooled object directly - caller is responsible for
+                    // reinitializing properties. Nulling all keys here is wasteful
+                    // since the caller will immediately overwrite them via factory pattern.
                     return obj;
                 }
                 return factory();
@@ -3261,12 +3206,12 @@ window.PERF_MONITOR = {
         // ═══════════════════ 向量池优化 (防御性重构版) ═══════════════════
         const VecPool = {
             _pool: [],
+            _poolSet: new WeakSet(),  // O(1) double-release detection instead of O(n) includes()
             _maxSize: 200,
             _releasedCount: 0,
             _acquiredCount: 0,
             
             get(x = 0, y = 0) {
-                // 验证坐标参数
                 const safeX = Number.isFinite(x) ? x : 0;
                 const safeY = Number.isFinite(y) ? y : 0;
                 
@@ -3274,9 +3219,9 @@ window.PERF_MONITOR = {
                 
                 if (this._pool.length > 0) {
                     const v = this._pool.pop();
-                    // 验证返回的对象
                     if (v && typeof v === 'object') {
-                        v.x = safeX; 
+                        this._poolSet.delete(v);
+                        v.x = safeX;
                         v.y = safeY;
                         return v;
                     }
@@ -3285,24 +3230,17 @@ window.PERF_MONITOR = {
             },
             
             release(v) {
-                // 严格验证
-                if (!v || typeof v !== 'object') {
-                    console.warn('[VecPool] Attempted to release non-object');
-                    return;
-                }
+                if (!v || typeof v !== 'object') return;
                 
-                // 防止重复释放同一对象
-                if (this._pool.includes(v)) {
-                    console.warn('[VecPool] Attempted double-release');
-                    return;
-                }
+                // O(1) double-release guard via WeakSet (replaces O(n) Array.includes)
+                if (this._poolSet.has(v)) return;
                 
                 this._releasedCount++;
                 
                 if (this._pool.length < this._maxSize) {
-                    // 清理引用
                     v.x = 0;
                     v.y = 0;
+                    this._poolSet.add(v);
                     this._pool.push(v);
                 }
             },
@@ -3318,6 +3256,7 @@ window.PERF_MONITOR = {
             
             clear() {
                 this._pool = [];
+                this._poolSet = new WeakSet();
                 this._acquiredCount = 0;
                 this._releasedCount = 0;
             }
@@ -3376,11 +3315,10 @@ window.PERF_MONITOR = {
                     this._typeCount++;
                 }
                 
-                if (pool.length < this.MAX_POOL_SIZE && !pool.includes(arr)) {
-                    // 深度清理数组元素
-                    for (let i = 0; i < arr.length; i++) {
-                        arr[i] = null;
-                    }
+                if (pool.length < this.MAX_POOL_SIZE) {
+                    // Skip if already in pool (use length === 0 as heuristic
+                    // instead of O(n) pool.includes() scan)
+                    if (arr.length === 0 && pool.indexOf(arr) !== -1) return;
                     arr.length = 0;
                     pool.push(arr);
                 }
@@ -3652,12 +3590,14 @@ window.PERF_MONITOR = {
                 if (!Array.isArray(this._samples) || this._samples.length === 0) return 60;
                 
                 try {
-                    // 过滤异常值
-                    const validSamples = this._samples.filter(s => s > 0 && s < 1000);
-                    if (validSamples.length === 0) return 60;
-                    
-                    const avg = validSamples.reduce((a, b) => a + b, 0) / validSamples.length;
-                    return Math.max(1, Math.min(999, Math.round(1000 / avg)));
+                    // Use loop instead of filter+reduce to avoid allocating intermediate arrays
+                    let sum = 0, count = 0;
+                    for (let i = 0; i < this._samples.length; i++) {
+                        const s = this._samples[i];
+                        if (s > 0 && s < 1000) { sum += s; count++; }
+                    }
+                    if (count === 0) return 60;
+                    return Math.max(1, Math.min(999, Math.round(1000 / (sum / count))));
                 } catch (e) {
                     console.error('[PerfMonitor] getAverageFPS error:', e);
                     return 60;
@@ -3668,11 +3608,15 @@ window.PERF_MONITOR = {
                 if (!Array.isArray(this._samples) || this._samples.length === 0) return 60;
                 
                 try {
-                    const validSamples = this._samples.filter(s => s > 0 && s < 1000);
-                    if (validSamples.length === 0) return 60;
-                    
-                    const max = Math.max(...validSamples);
-                    return Math.max(1, Math.min(999, Math.round(1000 / max)));
+                    // Use loop instead of Math.max(...arr) to avoid stack overflow
+                    // when sample count is large (spread operator has call-stack limit)
+                    let maxVal = 0;
+                    for (let i = 0; i < this._samples.length; i++) {
+                        const s = this._samples[i];
+                        if (s > 0 && s < 1000 && s > maxVal) maxVal = s;
+                    }
+                    if (maxVal === 0) return 60;
+                    return Math.max(1, Math.min(999, Math.round(1000 / maxVal)));
                 } catch (e) {
                     console.error('[PerfMonitor] getMinFPS error:', e);
                     return 60;
@@ -3685,14 +3629,22 @@ window.PERF_MONITOR = {
                 }
                 
                 try {
-                    const validSamples = this._samples.filter(s => s > 0 && s < 1000);
-                    if (validSamples.length === 0) return { avg: '16.67', min: '16.67', max: '16.67' };
-                    
-                    const avg = validSamples.reduce((a, b) => a + b, 0) / validSamples.length;
+                    // Use loop to find min/max/sum to avoid stack overflow from spread operator
+                    let sum = 0, count = 0, minVal = Infinity, maxVal = 0;
+                    for (let i = 0; i < this._samples.length; i++) {
+                        const s = this._samples[i];
+                        if (s > 0 && s < 1000) {
+                            sum += s;
+                            count++;
+                            if (s < minVal) minVal = s;
+                            if (s > maxVal) maxVal = s;
+                        }
+                    }
+                    if (count === 0) return { avg: '16.67', min: '16.67', max: '16.67' };
                     return {
-                        avg: avg.toFixed(2),
-                        min: Math.min(...validSamples).toFixed(2),
-                        max: Math.max(...validSamples).toFixed(2)
+                        avg: (sum / count).toFixed(2),
+                        min: minVal.toFixed(2),
+                        max: maxVal.toFixed(2)
                     };
                 } catch (e) {
                     console.error('[PerfMonitor] getFrameTimeStats error:', e);
@@ -3703,29 +3655,24 @@ window.PERF_MONITOR = {
         window.PerfMonitor = PerfMonitor;
 
         // ═══════════════════ 纹理缓存优化 (防御性重构版) ═══════════════════
+        // Uses Map iteration order (insertion order) for O(1) LRU eviction
+        // instead of the previous O(n) indexOf/splice on a separate array.
         const TextureCache = {
             _cache: new Map(),
-            _accessOrder: [],
             _maxSize: 200,
             _hitCount: 0,
             _missCount: 0,
 
             get(key) {
-                // 验证key
-                if (key === undefined || key === null) {
-                    console.warn('[TextureCache] Invalid key');
-                    return null;
-                }
+                if (key === undefined || key === null) return null;
                 
-                if (this._cache.has(key)) {
+                const value = this._cache.get(key);
+                if (value !== undefined) {
                     this._hitCount++;
-                    // 更新访问顺序
-                    const idx = this._accessOrder.indexOf(key);
-                    if (idx > -1) {
-                        this._accessOrder.splice(idx, 1);
-                        this._accessOrder.push(key);
-                    }
-                    return this._cache.get(key);
+                    // Move to end (most recently used) - O(1) with Map delete+set
+                    this._cache.delete(key);
+                    this._cache.set(key, value);
+                    return value;
                 }
                 
                 this._missCount++;
@@ -3733,40 +3680,22 @@ window.PERF_MONITOR = {
             },
 
             set(key, value) {
-                // 验证key
-                if (key === undefined || key === null) {
-                    console.warn('[TextureCache] Invalid key for set');
-                    return;
-                }
+                if (key === undefined || key === null) return;
                 
-                // 更新已存在的key
+                // If key exists, delete first to refresh insertion order
                 if (this._cache.has(key)) {
-                    this._cache.set(key, value);
-                    this._updateAccessOrder(key);
-                    return;
+                    this._cache.delete(key);
                 }
 
-                // LRU淘汰
-                while (this._cache.size >= this._maxSize && this._accessOrder.length > 0) {
-                    const oldest = this._accessOrder.shift();
+                // LRU eviction: Map.keys().next() gives oldest entry in O(1)
+                while (this._cache.size >= this._maxSize) {
+                    const oldest = this._cache.keys().next().value;
                     const cached = this._cache.get(oldest);
-                    // 清理纹理引用
-                    if (cached && cached.src) {
-                        cached.src = '';
-                    }
+                    if (cached && cached.src) cached.src = '';
                     this._cache.delete(oldest);
                 }
 
                 this._cache.set(key, value);
-                this._accessOrder.push(key);
-            },
-            
-            _updateAccessOrder(key) {
-                const idx = this._accessOrder.indexOf(key);
-                if (idx > -1) {
-                    this._accessOrder.splice(idx, 1);
-                    this._accessOrder.push(key);
-                }
             },
             
             getStats() {
@@ -3781,12 +3710,10 @@ window.PERF_MONITOR = {
             },
 
             clear() {
-                // 清理所有纹理引用
                 this._cache.forEach(texture => {
                     if (texture && texture.src) texture.src = '';
                 });
                 this._cache.clear();
-                this._accessOrder.length = 0;
                 this._hitCount = 0;
                 this._missCount = 0;
             }
@@ -3867,21 +3794,9 @@ window.PERF_MONITOR = {
         };
         window.LazyLoader = LazyLoader;
 
-        // ═══════════════════ 全局错误处理 ═══════════════════
-        window.addEventListener('error', (e) => {
-            console.error('Game Error:', e.error);
-            // 尝试恢复游戏状态
-            try {
-                if (window.__GAME_INSTANCE__ && window.__GAME_INSTANCE__._rafRunning) {
-                    // 游戏仍在运行，记录错误但不中断
-                    console.warn('Game continues despite error');
-                }
-            } catch (e) { if (typeof console !== 'undefined' && console.debug) console.debug('[Debug] Silently caught:', e); }
-        });
-
-        window.addEventListener('unhandledrejection', (e) => {
-            console.error('Unhandled Promise Rejection:', e.reason);
-        });
+        // NOTE: Global error handlers (onerror, unhandledrejection) are already
+        // registered by TU_Defensive module. Duplicate handlers removed to avoid
+        // double-logging errors and unnecessary overhead.
 
         window.TU = window.TU || {};
     </script>
@@ -24605,40 +24520,18 @@ function scheduleLogic(i) {
                                         };
                                     }
 
-                                    // 3. Logic Engine Worker Throughput
-                                    if (typeof TileLogicEngine !== 'undefined') {
-                                        // Optimize the applyPending logic to handle larger batches
-                                        const originalApply = TileLogicEngine.prototype._applyPending;
-                                        if (originalApply) {
-                                            TileLogicEngine.prototype._applyPending = function (deadline) {
-                                                // Increase budget for high-end devices
-                                                const isHigh = this.game && this.game._perf && this.game._perf.level === 'high';
-                                                const maxOps = isHigh ? 5000 : 2000;
-                                                // ... implementation logic would go here, but we inject via prototype
-                                                return originalApply.call(this, deadline);
-                                            };
-                                        }
-                                    }
+                                    // 3. Adaptive sub-step regulation is now handled
+                                    // directly in Game._perf logic. The previous
+                                    // TileLogicEngine._applyPending wrapper was a
+                                    // no-op (just called original). Removed to
+                                    // eliminate unnecessary prototype chain overhead.
 
-                                    // 4. Global Performance Monitor & Auto-Scaling
-                                    window.addEventListener('load', () => {
-                                        if (window.__GAME_INSTANCE__) {
-                                            const game = window.__GAME_INSTANCE__;
-                                            console.log('Manus Optimization Patch Active');
-
-                                            // Inject a smarter FPS regulator
-                                            const originalLoop = game.loop;
-                                            game.loop = function (timestamp) {
-                                                // Adaptive step based on load
-                                                if (this.fps < 30) {
-                                                    this._maxSubSteps = 2; // Reduce logic catch-up to prevent spiral
-                                                } else {
-                                                    this._maxSubSteps = 5;
-                                                }
-                                                originalLoop.call(this, timestamp);
-                                            };
-                                        }
-                                    });
+                                    // 4. Adaptive sub-step scaling moved inline.
+                                    // The previous approach monkey-patched game.loop
+                                    // via a second 'load' listener, creating a race
+                                    // condition with the main boot sequence. The
+                                    // _maxSubSteps adjustment is already handled by
+                                    // Game's built-in _perf system.
                                 })();
 
 
